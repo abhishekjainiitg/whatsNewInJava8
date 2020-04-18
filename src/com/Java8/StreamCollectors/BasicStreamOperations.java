@@ -1,5 +1,6 @@
 package com.Java8.StreamCollectors;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
@@ -15,10 +16,13 @@ public class BasicStreamOperations {
         Predicate<String> p2 = Predicate.isEqual("one");
 
         Stream<String> stream = list.stream();
+        List<String> result = new ArrayList<>();
 
         stream
+                .peek(c1)
                 .filter(p1.or(p2))
-                .forEach(c1);
+                .forEach(result::add);
 
+        System.out.println("Size of filtered list is " + result.size());
     }
 }
