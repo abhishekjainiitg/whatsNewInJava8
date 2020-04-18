@@ -22,7 +22,7 @@ public class ChainConsumer {
 
         Consumer<String> c2 = result::add;
 
-        list.forEach( (c2));
+        list.forEach(c1.andThen(c2));
 
         System.out.println("Size of the result array is " + result.size());
     }
