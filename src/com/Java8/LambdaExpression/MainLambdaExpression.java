@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
-public class LambdaExpressionMain {
+public class MainLambdaExpression {
     public void execute() {
         // Filtering java files without lambda expression
         FileFilterExample fileFilterExample = new FileFilterExample();
