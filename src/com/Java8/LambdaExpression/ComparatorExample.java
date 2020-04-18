@@ -13,7 +13,7 @@ public class ComparatorExample {
         }
     };
 
-    Comparator<String> compLambda = (String str1, String str2) -> Integer.compare(str1.length(), str2.length());
+    Comparator<String> compLambda = Comparator.comparingInt(String::length);
 
     public void getSortedList(List<String> list) {
         System.out.println("Sorting list using Anonymous implementation of Comparator");
