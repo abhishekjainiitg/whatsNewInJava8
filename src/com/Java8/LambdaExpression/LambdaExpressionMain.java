@@ -39,5 +39,9 @@ public class LambdaExpressionMain {
         System.out.println(list);
 
         System.out.println("*********************************************************************************************");
+
+        // Chaining of Consumers
+        ChainConsumer chainConsumer = new ChainConsumer();
+        chainConsumer.execute();
     }
 }
