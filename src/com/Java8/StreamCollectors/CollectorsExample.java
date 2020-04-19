@@ -1,18 +1,16 @@
 package com.Java8.StreamCollectors;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class CollectorsExample {
-    // youngest person older than 20, eldest person, map of age to persons, add count as the downstream collector,
-    // list of names instead of persons, sort the names, names as string separated by , ,
 
     public void execute() {
         System.out.println("Collectors Example");
@@ -40,13 +38,33 @@ public class CollectorsExample {
             String eldestPerson = getEldestPerson(persons) ;
             System.out.println("The eldest person is : " + eldestPerson);
 
+            System.out.println("");
+            System.out.println("*********************************************************************************************");
+            Map<Integer, Long> ageToPersonMap = getAgeToPersonMap(persons) ;
+            System.out.println("Map of age to person-count is : " + ageToPersonMap);
+
+            System.out.println("");
+            System.out.println("*********************************************************************************************");
+            Map<Integer, List<String>> ageToPersonLastNameAsListMap = getAgeToPersonLastNameAsListMap(persons) ;
+            System.out.println("Map of age to person-firstName is : " + ageToPersonLastNameAsListMap);
+
+            System.out.println("");
+            System.out.println("*********************************************************************************************");
+            Map<Integer, TreeSet<String>> ageToPersonLastNameAsTreeSet = getAgeToPersonLastNameAsTreeSet(persons) ;
+            System.out.println("Map of age to person-firstName as treeset for sorting is : " + ageToPersonLastNameAsTreeSet);
+
+            System.out.println("");
+            System.out.println("*********************************************************************************************");
+            Map<Integer, String> ageToPersonLastNameAsCommaSeparatedString = getAgeToPersonLastNameAsCommaSeparatedString(persons) ;
+            System.out.println("Map of age to person-firstName as Comma Separate String is : " + ageToPersonLastNameAsCommaSeparatedString);
+
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private String getYoungestPersonOlderThan20(List<Person> persons) {
+    private String getYoungestPersonOlderThan20(@NotNull List<Person> persons) {
         Predicate<Person> olderThan20Person = person -> person.getAge() > 20;
 
         Optional<Person> person = persons.stream()
@@ -56,11 +74,60 @@ public class CollectorsExample {
         return getPersonAsString(person.orElse(Person.GetDefaultPerson()));
     }
 
-    private String getEldestPerson(List<Person> persons) {
+    private String getEldestPerson(@NotNull List<Person> persons) {
         Optional<Person> eldestPerson = persons.stream()
                 .max(Comparator.comparing(Person::getAge));
 
         return getPersonAsString(eldestPerson.orElse(Person.GetDefaultPerson()));
+    }
+
+    private Map<Integer, Long> getAgeToPersonMap(@NotNull List<Person> persons) {
+        return persons.stream()
+                .collect(
+                        Collectors.groupingBy(
+                                Person::getAge,
+                                Collectors.counting()
+                        )
+                );
+    }
+
+    private Map<Integer, List<String>> getAgeToPersonLastNameAsListMap(@NotNull List<Person> persons) {
+        return persons.stream()
+                .collect(
+                        Collectors.groupingBy(
+                                Person::getAge,
+                                Collectors.mapping(
+                                        Person::getFirstName,
+                                        Collectors.toList()
+                                )
+                        )
+                );
+    }
+
+    private Map<Integer, TreeSet<String>> getAgeToPersonLastNameAsTreeSet(@NotNull List<Person> persons) {
+        return persons.stream()
+                .collect(
+                        Collectors.groupingBy(
+                                Person::getAge,
+                                Collectors.mapping(
+                                        Person::getFirstName,
+                                        Collectors.toCollection(TreeSet::new)
+                                )
+                        )
+                );
+    }
+
+    private Map<Integer, String> getAgeToPersonLastNameAsCommaSeparatedString(@NotNull List<Person> persons) {
+        return persons.stream()
+                .collect(
+                        Collectors.groupingBy(
+                                Person::getAge,
+                                Collectors.mapping(
+                                        Person::getFirstName,
+                                        Collectors.joining(", ")
+                                )
+                        )
+                );
     }
 
     private String getPersonAsString(Person person) {
