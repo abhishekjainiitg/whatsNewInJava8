@@ -63,7 +63,7 @@ public class ReductionAndOptional {
 
         Person jainWithAboveAverageAge = optionalJainWithAboveAverageAge.orElse(new Person("NA", "NA", 0));
 
-        String personName = jainWithAboveAverageAge.getFirstName() != "NA" ? jainWithAboveAverageAge.getFirstName() + " " + jainWithAboveAverageAge.getLastName() : "Does Not Exist";
+        String personName = jainWithAboveAverageAge.getFirstName() != "NA" ? jainWithAboveAverageAge.toString() : "Does Not Exist";
         System.out.println("Person with above average is : " + personName);
 
         long countOfJainWithAboveAverageAge = persons.stream()
