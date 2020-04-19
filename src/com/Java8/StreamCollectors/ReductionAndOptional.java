@@ -36,7 +36,7 @@ public class ReductionAndOptional {
         );
 
         Integer sumOfAge = persons.stream()
-                .map(person -> person.getAge())
+                .map(Person::getAge)
                 .reduce(0, Integer::sum);
 
         Integer numberOfPersons = persons.size();
@@ -45,7 +45,7 @@ public class ReductionAndOptional {
         System.out.println("*** Average of age of all person is:: " + averageAge);
 
         Boolean areAllJains = persons.stream()
-                .map(person -> person.getLastName())
+                .map(Person::getLastName)
                 .allMatch(Predicate.isEqual("Jain"));
 
         System.out.println("*** Are all Jains? :: " + areAllJains);
