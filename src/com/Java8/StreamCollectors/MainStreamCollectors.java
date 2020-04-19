@@ -11,5 +11,10 @@ public class MainStreamCollectors {
         // An example of Map and FlatMap
         FlatMapExample flatMapExample = new FlatMapExample();
         flatMapExample.execute();
+
+        System.out.println("*********************************************************************************************");
+        // Reductional And Optional
+        ReductionAndOptional reductionAndOptional = new ReductionAndOptional();
+        reductionAndOptional.execute();
     }
 }
