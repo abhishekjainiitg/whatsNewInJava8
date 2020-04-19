@@ -16,5 +16,10 @@ public class MainStreamCollectors {
         // Reductional And Optional
         ReductionAndOptional reductionAndOptional = new ReductionAndOptional();
         reductionAndOptional.execute();
+
+        System.out.println("*********************************************************************************************");
+        // Collectors Example
+        CollectorsExample collectorsExample = new CollectorsExample();
+        collectorsExample.execute();
     }
 }
