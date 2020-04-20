@@ -8,5 +8,10 @@ public class MainDateAndTime {
        // Playing with LocalDate And Period
        LocalDatePeriodExample localDatePeriodExample = new LocalDatePeriodExample();
        localDatePeriodExample.execute();
+
+       System.out.println("*********************************************************************************************");
+       // Playing with ZonedDateTime
+       ZonesDateTimeExample zonesDateTimeExample = new ZonesDateTimeExample();
+       zonesDateTimeExample.execute();
    }
 }
