@@ -48,10 +48,10 @@ public class LocalDatePeriodExample {
                     LocalDate now = LocalDate.now();
                     Period p = Period.between(person.getDob(), now);
 
-                    long pMaonth = person.getDob().until(now, ChronoUnit.MONTHS);
+                    long pMonth = person.getDob().until(now, ChronoUnit.MONTHS);
 
                     System.out.println("Person " + person.getFirstName() + " was born " + p.getYears() + " years and " +
-                            p.getMonths() + " months and " + p.getDays() + " [ " + pMaonth + " ]");
+                            p.getMonths() + " months and " + p.getDays() + " [ " + pMonth + " ]");
                 });
     }
 }
