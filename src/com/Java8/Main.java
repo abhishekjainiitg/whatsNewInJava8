@@ -1,5 +1,6 @@
 package com.Java8;
 
+import com.Java8.DataAndTime.MainDateAndTime;
 import com.Java8.LambdaExpression.MainLambdaExpression;
 import com.Java8.StreamCollectors.MainStreamCollectors;
 
@@ -11,5 +12,8 @@ public class Main {
 
         MainStreamCollectors mainStreamCollectors = new MainStreamCollectors();
         mainStreamCollectors.execute();
+
+        MainDateAndTime mainDateAndTime = new MainDateAndTime();
+        mainDateAndTime.execute();
     }
 }
